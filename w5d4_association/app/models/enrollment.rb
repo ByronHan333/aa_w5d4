@@ -12,12 +12,22 @@ class Enrollment < ApplicationRecord
   belongs_to :course,
   primary_key: :id,
   foreign_key: :course_id,
-  class_name: :Course,
-  optional: true
+  class_name: :Course
 
   belongs_to :student,
   primary_key: :id,
   foreign_key: :student_id,
-  class_name: :User,
-  optional: true
+  class_name: :User
 end
+
+# prerequisite
+SELECT prereq.*
+FROM courses current_course
+INNER JOIN courses prereq on current_course.prereq_id = prereq.id
+WHERE current_course.id = 2
+
+# has_many
+SELECT next_course.*
+FROM courses prereq
+INNER JOIN courses next_course on next_course.prereq_id = prereq.id
+WHERE "prereq".id = 1

@@ -29,11 +29,9 @@ class Course < ApplicationRecord
   class_name: :Course,
   optional: true
 
-  has_one :next_course,
+  has_many :next_courses,
   primary_key: :id,
   foreign_key: :prereq_id,
   class_name: :Course
-
-  # has_one :
 
 end
