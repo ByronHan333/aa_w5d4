@@ -36,9 +36,23 @@ class ShortenedUrl < ApplicationRecord
   end
 
   belongs_to :submitter,
-  class_name: :User,
-  primary_key: :id,
-  foreign_key: :user_id
+    class_name: :User,
+    primary_key: :id,
+    foreign_key: :user_id
+
+  has_many :visits,
+    class_name: :Visit,
+    primary_key: :id,
+    foreign_key: :url_id,
+    dependent: :destory
+
+  def visitors
+    
+  end
+
+  def num_clicks
+
+  end
 
   private
   def generate_short_url
